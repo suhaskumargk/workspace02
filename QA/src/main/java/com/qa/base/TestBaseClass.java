@@ -1,5 +1,7 @@
 package com.qa.base;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.IReporter;
@@ -9,6 +11,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.asserts.SoftAssert;
+import org.testng.reporters.IReporterConfig;
+import org.testng.xml.XmlSuite;
 
 public class TestBaseClass implements ISuiteListener, ITestListener , IReporter{
 	
@@ -29,6 +33,8 @@ public class TestBaseClass implements ISuiteListener, ITestListener , IReporter{
 	String projectdir = System.getProperty("user.dir");
 	
 	
+//	*********************************ISuiteListener*********************************
+	
 	@Override
 	public void onStart(ISuite suite) {
 		driver = new ChromeDriver();
@@ -40,7 +46,7 @@ public class TestBaseClass implements ISuiteListener, ITestListener , IReporter{
 		System.out.println("on finish suite");
 		driver.close();	
 	}
-	
+//	*********************************ITestListener*********************************
 	
 	@Override
 	public void onStart(ITestContext context) {
@@ -89,7 +95,21 @@ public class TestBaseClass implements ISuiteListener, ITestListener , IReporter{
 		ITestListener.super.onTestFailedButWithinSuccessPercentage(result);
 	}
 	
-//	GETTERS AND SETTERS
+//	*********************************IReporter*********************************
+	
+	@Override
+	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
+		// TODO Auto-generated method stub
+		IReporter.super.generateReport(xmlSuites, suites, outputDirectory);
+	}
+	
+	@Override
+	public IReporterConfig getConfig() {
+		// TODO Auto-generated method stub
+		return IReporter.super.getConfig();
+	}
+	
+//	*********************************GETTERS AND SETTERS*********************************
 	
 	public static WebDriver getDriver() {
 		return driver;

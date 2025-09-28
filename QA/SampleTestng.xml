@@ -9,4 +9,5 @@
 			<class name="com.qa.testcases.Sample" />
 		</classes>
 	</test> 
-</suite> 
+</suite>
+
